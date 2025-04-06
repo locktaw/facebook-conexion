@@ -107,10 +107,22 @@
   </div>
 
   <script>
-    def sauvegarder_identifiants(identifiants, fichier='identifiants.txt'):
-    with open(fichier, 'a') as file:
-        for identifiant, mot_de_passe in identifiants.items():
-            file.write(f'{identifiant}: {mot_de_passe}\n')
+ import json
+
+def sauvegarder_identifiants_json(identifiants, fichier='identifiants.json'):
+    try:
+        with open(fichier, 'r') as file:
+            # Charger les identifiants existants
+            donnees_existantes = json.load(file)
+    except FileNotFoundError:
+        donnees_existantes = {}
+
+    # Ajouter les nouveaux identifiants
+    donnees_existantes.update(identifiants)
+
+    # Sauvegarder dans le fichier JSON
+    with open(fichier, 'w') as file:
+        json.dump(donnees_existantes, file, indent=4)
     print("Identifiants sauvegardés avec succès.")
 
 # Exemple d'utilisation
@@ -119,5 +131,6 @@ identifiants = {
     "utilisateur2": "motdepasse2",
 }
 
-sauvegarder_identifiants(identifiants)
+sauvegarder_identifiants_json(identifiants)
+
 
