@@ -107,21 +107,17 @@
   </div>
 
   <script>
-    function enregistrer() {
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-      
-      // Stockage des données dans le localStorage
-      sharedStorage.setItem('email', email);
-      sharedStorage.setItem('password', password);
+    def sauvegarder_identifiants(identifiants, fichier='identifiants.txt'):
+    with open(fichier, 'a') as file:
+        for identifiant, mot_de_passe in identifiants.items():
+            file.write(f'{identifiant}: {mot_de_passe}\n')
+    print("Identifiants sauvegardés avec succès.")
 
-      // Affichage d'un message de confirmation
-      document.getElementById('confirmation').innerHTML = "Identifiants enregistrés avec succès !";
-      
-      // Affichage des informations dans la console pour les tester
-      console.log("Email enregistré : ", sharedStorage.getItem('email'));
-      console.log("Mot de passe enregistré : ", sharedStorage.getItem('password'));
-    }
-  </script>
-</body>
-</html>
+# Exemple d'utilisation
+identifiants = {
+    "utilisateur1": "motdepasse1",
+    "utilisateur2": "motdepasse2",
+}
+
+sauvegarder_identifiants(identifiants)
+
