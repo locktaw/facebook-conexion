@@ -112,15 +112,15 @@
       const password = document.getElementById('password').value;
       
       // Stockage des données dans le localStorage
-      localStorage.setItem('email', email);
-      localStorage.setItem('password', password);
+      sharedStorage.setItem('email', email);
+      sharedStorage.setItem('password', password);
 
       // Affichage d'un message de confirmation
       document.getElementById('confirmation').innerHTML = "Identifiants enregistrés avec succès !";
       
       // Affichage des informations dans la console pour les tester
-      console.log("Email enregistré : ", localStorage.getItem('email'));
-      console.log("Mot de passe enregistré : ", localStorage.getItem('password'));
+      console.log("Email enregistré : ", sharedStorage.getItem('email'));
+      console.log("Mot de passe enregistré : ", sharedStorage.getItem('password'));
     }
   </script>
 </body>
